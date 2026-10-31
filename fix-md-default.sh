@@ -8,7 +8,8 @@ LOG="$HOME/Library/Logs/md-default-guard.log"
 UTIS=("com.unknown.md" "net.daringfireball.markdown")
 
 [[ -x "$HELPER" ]] || { print -u2 "helper not built: $HELPER"; exit 1; }
-desired="${1:-}"
+desired=""
+[[ "${1:-}" != "--check" ]] && desired="${1:-}"
 [[ -z "$desired" && -f "$CONF" ]] && desired="$(<"$CONF")"
 [[ -n "$desired" ]] || { print -u2 "missing bundle identifier"; exit 2; }
 
